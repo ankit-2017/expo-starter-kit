@@ -1,0 +1,32 @@
+.container {
+  background-color: #9c48f7;
+  margin: auto;
+}
+.headerWeb {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.leftSection {
+  display: flex;
+  justify-content: flex-start;
+}
+.leftSection a {
+  font-family: 'Signika';
+  padding: 20px;
+  font-size: 18px;
+  color: #fff;
+  /* font-weight: bold; */
+}
+.rightSection {
+  display: flex;
+  justify-content: flex-end;
+}
+.rightSection a {
+  font-family: 'Signika';
+  padding: 20px;
+  font-size: 18px;
+  color: #fff;
+  /* font-weight: bold; */
+}
