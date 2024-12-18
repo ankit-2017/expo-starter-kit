@@ -1,16 +1,13 @@
+import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
-// import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { View, StyleSheet } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Login from "screens/Login";
 
-import webStyle from "../screens/Login/style.module.css";
-
-// SplashScreen.preventAutoHideAsync();
+import webStyle from "screens/Login/style.module.css";
 
 export default function Index() {
-  // SplashScreen.hideAsync();
 
   return (
     <SafeAreaProvider>

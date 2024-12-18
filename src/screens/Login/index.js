@@ -1,13 +1,14 @@
+import React from "react";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import { Formik } from "formik";
 import { View, Text, StyleSheet, Alert, Image, Pressable } from "react-native";
+import { LoginSchema } from "utils/formSchema";
 
 import UserButton from "../../components/common/Button";
 import TextInput from "../../components/common/TextInput";
+import CustomeImage from "../../../assets/splash.png"
 
 export default function Login() {
-  const [userId, setUserId] = useState("");
-  const [password, setPassword] = useState("");
   const router = useRouter();
 
   async function fetchHello() {
@@ -22,51 +23,71 @@ export default function Login() {
     router.replace("page1");
   };
 
-  const onSignUp = () => {
-    Alert.alert("Sign up action", "Comming soon", [
-      { text: "OK", onPress: () => console.log("OK Pressed") },
-    ]);
-  };
-
   return (
-    <View style={Styles.LoginContainer}>
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
-        <Image
-          source={require("../../../assets/splash.png")}
-          style={Styles.image}
-        />
-      </View>
-      <TextInput
-        value={userId}
-        setValue={(ele) => setUserId(ele)}
-        placeholder="Enter Login ID"
-        inputLabel="Login ID"
-        customStyles={Styles.textInputStyles}
-      />
-      <TextInput
-        value={password}
-        setValue={(ele) => setPassword(ele)}
-        placeholder="Enter Password"
-        inputLabel="Password"
-        type="password"
-        customStyles={Styles.textInputStyles}
-      />
-      <UserButton
-        onPress={onLogin}
-        title="Login"
-        type="linear"
-        backgroundColor={["#f73946", "#e0468e"]}
-        customStyles={{ marginTop: 16 }}
-      />
-      <View style={Styles.signupWrapper}>
-        <Text style={{ fontSize: 14, color: "#fff" }}>
-          Don't have account!{" "}
-        </Text>
-        <Pressable onPress={onSignUp}>
-          <Text style={Styles.signupText}>Sign up</Text>
-        </Pressable>
-      </View>
-    </View>
+      <Formik
+        initialValues={{ email: "", password: "" }}
+        validationSchema={LoginSchema}
+        onSubmit={(values) => {
+          console.log(values);
+          onLogin();
+        }}
+      >
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          errors,
+          touched,
+          values,
+        }) => (
+          <View style={Styles.LoginContainer}>
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+              <Image
+                source={CustomeImage}
+                style={Styles.image}
+              />
+            </View>
+            <TextInput
+              value={values.userId}
+              setValue={handleChange("email")}
+              onBlur={handleBlur("email")}
+              placeholder="Enter Email ID"
+              inputLabel="Email ID"
+              validationText={
+                (errors.email && touched.email) ? errors.email : false
+              }
+              customStyles={Styles.textInputStyles}
+            />
+            <TextInput
+              value={values.password}
+              setValue={handleChange("password")}
+              onBlur={handleBlur("email")}
+              placeholder="Enter Password"
+              inputLabel="Password"
+              validationText={
+                (errors.password && touched.password) ? errors.password : false
+              }
+              type="password"
+              customStyles={Styles.textInputStyles}
+            />
+            <UserButton
+              onPress={handleSubmit}
+              title="Login"
+              type="linear"
+              backgroundColor={["#f73946", "#e0468e"]}
+              customStyles={{ marginTop: 16 }}
+            />
+            <View style={Styles.signupWrapper}>
+              <Text style={{ fontSize: 14, color: "#fff" }}>
+                Don&apos;t have account!{" "}
+              </Text>
+              <Pressable onPress={() => router.navigate('/auth/signup')}>
+                <Text style={Styles.signupText}>Sign up</Text>
+              </Pressable>
+            </View>
+          </View>
+        )}
+      </Formik>
   );
 }
 

@@ -22,7 +22,7 @@
       [
         "expo-router",
         {
-          "origin": "https://evanbacon.dev/"
+          "origin": "https://backend-eight-drab.vercel.app"
         }
       ]
     ],

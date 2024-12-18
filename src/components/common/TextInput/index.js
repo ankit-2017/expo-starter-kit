@@ -6,6 +6,7 @@ export default function Index({
   customStyles,
   placeholder,
   inputLabel,
+  validationText,
   type,
 }) {
   return (
@@ -19,6 +20,9 @@ export default function Index({
         placeholderTextColor="#3f4075"
         secureTextEntry={type?.includes("password")}
       />
+      {validationText && (
+        <Text style={Styles.validationText}>{validationText}</Text>
+      )}
     </View>
   );
 }
@@ -26,9 +30,7 @@ export default function Index({
 const Styles = StyleSheet.create({
   text: {
     fontFamily: "Signika",
-    // height: 0,
     borderRadius: 5,
-    // borderWidth: 1,
     backgroundColor: "white",
     paddingHorizontal: 10,
     paddingVertical: Platform.OS === "ios" ? 15 : 13,
@@ -40,5 +42,11 @@ const Styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 4,
     color: "#fff",
+  },
+  validationText: {
+    fontFamily: "Signika",
+    fontSize: 12,
+    marginTop: 4,
+    color: "red",
   },
 });
