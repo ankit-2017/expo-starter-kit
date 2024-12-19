@@ -1,6 +1,5 @@
 import React from "react";
-import Navbar from "../../components/common/Navbar";
+import { Slot } from "expo-router";
 
-export default function Index() {
-  return <Navbar />
-}
+const Layout = () => <Slot />;
+export default Layout

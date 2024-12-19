@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 
 import useCustomFont from "../hooks/useCustomFont";
 import { store } from '../store'
+import '../../global.css'
 
 export {
   // Catch any errors thrown by the Layout component.

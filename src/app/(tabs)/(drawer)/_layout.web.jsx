@@ -1,3 +1,5 @@
+import React from "react";
 import { Slot } from "expo-router";
 
-export default () => <Slot />;
+const Layout = () => <Slot />;
+export default Layout

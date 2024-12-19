@@ -9,7 +9,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended'
   ],
-  ignorePatterns: ['dist', '.eslintrc.js'],
+  ignorePatterns: ['dist', '.eslintrc.js', 'postcss.config.js', 'tailwind.config.js'],
   parserOptions: {
       "ecmaVersion": 'latest',
       "sourceType": "module",

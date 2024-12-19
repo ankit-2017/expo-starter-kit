@@ -2,6 +2,7 @@ import { useRouter } from "expo-router";
 import React, {useEffect} from "react";
 
 import UserButton from "../../components/common/Button";
+import Navbar from "../../components/common/Navbar";
 import { useSelector, useDispatch } from 'react-redux'
 import { setWelcomeText } from '../../store/slices/welcomeSlice'
 
@@ -17,15 +18,17 @@ export default function Home() {
   const router = useRouter();
   
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <p>Home Page web</p>
-      <UserButton title="Logout" onPress={() => router.replace("/")} />
+    <div>
+      <Navbar />
+      <div className="items-center justify-items-center">
+        <p>Home Page web</p>
+        <UserButton
+          type="primary"
+          title="Logout"
+          customStyles={{width: '6rem'}}
+          onPress={() => router.replace("/")}
+        />
+      </div>
     </div>
   );
 }
